@@ -12,6 +12,7 @@ LAUNCH_DATA_PARAMETERS = [
     'launch_presentation_locale',
     'launch_presentation_return_url',
     'launch_presentation_width',
+    'lis_course_offering_sourcedid',
     'lis_course_section_sourcedid',
     'lis_outcome_service_url',
     'lis_person_contact_email_primary',

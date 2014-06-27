@@ -3,7 +3,7 @@ from ims_lti_py import ToolConsumer
 
 def create_params_tp():
     '''
-    Creates a set of launch parameters for a ToolConsumer.
+    Creates a set of launch parameters for a ToolProvider.
     '''
     return {
           "lti_message_type": "basic-lti-launch-request",

@@ -44,7 +44,7 @@ class DontTestLaunchParams():
         #resp, content = h.request('/test?key=value', 'POST')
 
         # Validate request
-        #self.too.is_valid_request(resp)
+        #self.tool.is_valid_request(resp)
         pass
 
 class TestProviderLaunchParams(unittest.TestCase, DontTestLaunchParams):

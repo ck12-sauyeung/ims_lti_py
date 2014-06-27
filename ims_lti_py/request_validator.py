@@ -47,7 +47,7 @@ class RequestValidatorMixin(object):
         # Signature was valid
         return True
 
-    def parse_request(self, request, parameters):
+    def parse_request(self, request, parameters, fake_method=None):
         '''
         This must be implemented for the framework you're using
 
@@ -64,6 +64,21 @@ class RequestValidatorMixin(object):
         Check whether the OAuth-signed request is valid and throw error if not.
         '''
         self.is_valid_request(request, parameters={}, handle_error=False)
+
+
+class PylonsRequestValidatorMixin(RequestValidatorMixin):
+    '''
+    A mixin for OAuth request validation using Pylons
+    '''
+
+    def parse_request(self, request, parameters=None, fake_method=None):
+        '''
+        Parse Pylons request
+        '''
+        return (request.method,
+                request.url,
+                request.headers,
+                parameters if parameters else request.params.dict_of_lists())
 
 
 class FlaskRequestValidatorMixin(RequestValidatorMixin):

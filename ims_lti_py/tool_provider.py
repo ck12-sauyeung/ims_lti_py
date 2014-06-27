@@ -1,6 +1,5 @@
 from launch_params import LaunchParamsMixin
-from request_validator import RequestValidatorMixin, \
-    FlaskRequestValidatorMixin, DjangoRequestValidatorMixin
+from request_validator import RequestValidatorMixin, PylonsRequestValidatorMixin, FlaskRequestValidatorMixin, DjangoRequestValidatorMixin
 from outcome_request import OutcomeRequest
 from collections import defaultdict
 import re
@@ -179,6 +178,13 @@ class ToolProvider(LaunchParamsMixin, RequestValidatorMixin, object):
         self.outcome_requests.append(OutcomeRequest(opts=opts))
         self.last_outcome_request = self.outcome_requests[-1]
         return self.last_outcome_request
+
+
+class PylonsToolProvider(PylonsRequestValidatorMixin, ToolProvider):
+    '''
+    OAuth ToolProvider that works with Pylons requests
+    '''
+    pass
 
 
 class DjangoToolProvider(DjangoRequestValidatorMixin, ToolProvider):

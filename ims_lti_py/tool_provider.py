@@ -92,14 +92,32 @@ class ToolProvider(LaunchParamsMixin, RequestValidatorMixin, object):
         '''
         Return the full, given, or family name if set.
         '''
+        if self.lis_person_name_full:
+            return self.lis_person_name_full
         if self.lis_person_name_given:
             return self.lis_person_name_given
-        elif self.lis_person_name_family:
+        if self.lis_person_name_family:
             return self.lis_person_name_family
-        elif self.lis_person_name_full:
-            return self.lis_person_name_full
-        else:
-            return default
+
+        return default
+
+    def given_name(self, default=None):
+        '''
+        Return the given name if set.
+        '''
+        if self.lis_person_name_given:
+            return self.lis_person_name_given
+
+        return default
+
+    def family_name(self, default=None):
+        '''
+        Return the family name if set.
+        '''
+        if self.lis_person_name_family:
+            return self.lis_person_name_family
+
+        return default
 
     def post_replace_result(self, score):
         '''

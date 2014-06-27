@@ -71,6 +71,16 @@ class PylonsRequestValidatorMixin(RequestValidatorMixin):
     A mixin for OAuth request validation using Pylons
     '''
 
+    def nestedMultiDict2Dict(self, nestedMultiDict):
+        d = nestedMultiDict.dict_of_lists()
+        params = {}
+        for key in d.keys():
+            if len(d[key]) == 1:
+                params[key] = d[key][0]
+            else:
+                params[key] = d[key]
+        return params
+
     def parse_request(self, request, parameters=None, fake_method=None):
         '''
         Parse Pylons request
@@ -78,7 +88,7 @@ class PylonsRequestValidatorMixin(RequestValidatorMixin):
         return (request.method,
                 request.url,
                 request.headers,
-                parameters if parameters else request.params.dict_of_lists())
+                parameters if parameters else self.nestedMultiDict2Dict(request.params))
 
 
 class FlaskRequestValidatorMixin(RequestValidatorMixin):

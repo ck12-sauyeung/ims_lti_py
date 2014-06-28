@@ -48,3 +48,18 @@ class TestToolProvider(unittest.TestCase):
         self.assertEqual(self.tp.username('guy'), 'given')
         self.tp.lis_person_name_full = 'full'
         self.assertEqual(self.tp.username('guy'), 'full')
+
+    def test_given_name(self):
+        '''
+        Should recognize the given_name.
+        '''
+        self.tp.lis_person_name_given = 'given'
+        self.assertEqual(self.tp.given_name('guy'), 'given')
+
+
+    def test_family_name(self):
+        '''
+        Should recognize the family_name.
+        '''
+        self.tp.lis_person_name_family = 'family'
+        self.assertEqual(self.tp.family_name('guy'), 'family')
